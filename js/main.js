@@ -110,9 +110,9 @@ let aumentarSaldoCuenta = (usuario) => {
 }
 
 /* Eventos */
-document.getElementById("btnAgregarDinero").addEventListener("click", () => {
+document.getElementById('btnAgregarDinero').addEventListener('click', ()=>{
   aumentarSaldoCuenta(persona1);
-})
+});
 
 
 console.log(persona1);
