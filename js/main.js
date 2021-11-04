@@ -52,7 +52,7 @@ class Cuenta {
       alert('El monto a retirar es menor a su saldo, se descontara de su sobregiro')
       this.sobregiro -= this.saldo;
       this.saldo -= this.saldo;
-    } 
+    }
 
     //se registra el movimiento de dinero
     this.movimientos.push({
@@ -96,23 +96,38 @@ let registrarMovimientos = (cuenta) => {
 }
 
 
-document.querySelectorAll('.saldo').forEach(element => element.innerText = '$'+persona1.billetera[0].saldo);
+document.querySelectorAll('.saldo').forEach(element => element.innerText = '$' + persona1.billetera[0].saldo);
 
 let aumentarSaldoCuenta = (usuario) => {
   let inputAgregarDinero = document.getElementById('inputAgregarDinero');
   let cantidadAumento = parseInt(inputAgregarDinero.value);
   usuario.billetera[0].agregarSaldo(cantidadAumento);
 
-  document.querySelectorAll('.saldo').forEach(element => element.innerText = '$'+persona1.billetera[0].saldo);
+  document.querySelectorAll('.saldo').forEach(element => element.innerText = '$' + persona1.billetera[0].saldo);
   inputAgregarDinero.value = '';
 
   registrarMovimientos(usuario.billetera[0]);
 }
 
 /* Eventos */
-document.getElementById('btnAgregarDinero').addEventListener('click', ()=>{
+document.getElementById('btnAgregarDinero').addEventListener('click', () => {
   aumentarSaldoCuenta(persona1);
 });
 
 
-console.log(persona1);
+/* peticion AJAX por GET */
+//Url API de la informacion de la UF
+const URLGET = "https://mindicador.cl/api/uf";
+//script para hacer un llamado AJAX y traer el valor monetario y la fecha de la informacion
+$("#btnValorUf").click(() => {
+  $.get(URLGET, function (respuesta, estado) {
+    if (estado === "success") {
+      let misDatos = respuesta.serie[0];
+      let fechaDato = misDatos.fecha.substr(0,10);
+      let valorDato = Math.floor(misDatos.valor);
+      
+      $('.valor-uf').text(valorDato);
+      $('.fecha-uf').text(fechaDato);
+    }
+  });
+});
