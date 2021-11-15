@@ -79,7 +79,35 @@ const persona1 = new Usuario({
 });
 
 /* Funciones */
-let registrarMovimientos = (cuenta) => {
+const guardarLocalStorage = (claveLS, valorLS) => {
+  localStorage.setItem(claveLS, JSON.stringify(valorLS));
+}
+
+const obtenerLocalStorage = (itemLS) => {
+  let listaLocalStorage = localStorage.getItem(itemLS),
+  listaUsuarios = [];
+
+  if (listaLocalStorage != null) {
+    listaUsuarios = JSON.parse(listaLocalStorage);
+  }
+
+  return listaUsuarios;
+}
+
+document.querySelectorAll('.saldo').forEach(element => element.innerText = '$' + persona1.billetera[0].saldo);
+
+const aumentarSaldoCuenta = (usuario) => {
+  let inputAgregarDinero = document.getElementById('inputAgregarDinero');
+  let cantidadAumento = parseInt(inputAgregarDinero.value);
+  usuario.billetera[0].agregarSaldo(cantidadAumento);
+
+  document.querySelectorAll('.saldo').forEach(element => element.innerText = '$' + persona1.billetera[0].saldo);
+  inputAgregarDinero.value = '';
+
+  registrarMovimientos(usuario.billetera[0]);
+}
+
+const registrarMovimientos = (cuenta) => {
   let registros = document.querySelector('#listaMovimientos');
 
   let listadoMovimientos = cuenta.movimientos.map(element => {
@@ -95,39 +123,7 @@ let registrarMovimientos = (cuenta) => {
   registros.innerHTML = listadoMovimientos;
 }
 
-
-document.querySelectorAll('.saldo').forEach(element => element.innerText = '$' + persona1.billetera[0].saldo);
-
-let aumentarSaldoCuenta = (usuario) => {
-  let inputAgregarDinero = document.getElementById('inputAgregarDinero');
-  let cantidadAumento = parseInt(inputAgregarDinero.value);
-  usuario.billetera[0].agregarSaldo(cantidadAumento);
-
-  document.querySelectorAll('.saldo').forEach(element => element.innerText = '$' + persona1.billetera[0].saldo);
-  inputAgregarDinero.value = '';
-
-  registrarMovimientos(usuario.billetera[0]);
-}
-
 /* Eventos */
-document.getElementById('btnAgregarDinero').addEventListener('click', () => {
+document.querySelector('#btnAgregarDinero').addEventListener('click', () => {
   aumentarSaldoCuenta(persona1);
-});
-
-
-/* peticion AJAX por GET */
-//Url API de la informacion de la UF
-const URLGET = "https://mindicador.cl/api/uf";
-//script para hacer un llamado AJAX y traer el valor monetario y la fecha de la informacion
-$("#btnValorUf").click(() => {
-  $.get(URLGET, function (respuesta, estado) {
-    if (estado === "success") {
-      let misDatos = respuesta.serie[0];
-      let fechaDato = misDatos.fecha.substr(0,10);
-      let valorDato = Math.floor(misDatos.valor);
-      
-      $('.valor-uf').text(valorDato);
-      $('.fecha-uf').text(fechaDato);
-    }
-  });
 });
