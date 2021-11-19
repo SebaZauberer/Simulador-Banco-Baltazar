@@ -30,25 +30,25 @@ $(document).ready(function () {
     guardarLocalStorage('listaUsuariosLS', listaUsuarios);
   }
 
-  //funcion parz validar el usuario en el login
-  const validarUsuario = () =>{
+  //funcion para validar el usuario en el login
+  const validarUsuario = () => {
     let emailUsuario = $('#mailUsuarioLogin').val();
     let contrasenaUsuario = $('#contrasenaUsuarioLogin').val();
 
     let usuariosLS = obtenerLocalStorage('listaUsuariosLS');
 
-    //bucle para recorrer tosos los registros de usuarios en la lista de LocaStorage
-    $.each(usuariosLS, (index, value) =>{
+    //bucle para recorrer todos los registros de usuarios en la lista de LocaStorage
+    $.each(usuariosLS, (index, value) => {
       //Si el de mail es igual a la propiedad .mail de cada objeto
-      if(value.mail == emailUsuario){
+      if (value.mail == emailUsuario) {
         //Si los valores de mail y contraseña son iguales a los del objeto
-        if(value.mail == emailUsuario && value.clave == contrasenaUsuario){
+        if (value.mail == emailUsuario && value.clave == contrasenaUsuario) {
           //Me envía al Dasboard
-          window.location.href = "dashboard.html";
+          window.location.href = `/dashboard.html?user=${value.rut}`;
         } else {
           $('#contrasenaUsuarioLogin').addClass('is-invalid');
         }
-        
+
       } else {
         $('#mailUsuarioLogin').addClass('is-invalid');
       }
@@ -57,12 +57,11 @@ $(document).ready(function () {
 
   //evento para el formulario de registro
   $("#btnCrearCuenta").on("click", (e) => {
-    if($("#resgistroContrasena").val() != $("#resgistroContrasena2").val()){
+    if ($("#resgistroContrasena").val() != $("#resgistroContrasena2").val()) {
       $("#resgistroContrasena2").addClass('is-invalid');
-      console.log('error de contraseña');
-    } else{
+    } else {
       crearUsuario();
-      window.location.href = "dashboard.html";
+      window.location.href = `/dashboard.html?user=${value.rut}`;
     }
   });
 
