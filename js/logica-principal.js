@@ -79,6 +79,8 @@ const persona1 = new Usuario({
 });
 
 /* Funciones */
+
+// Local storage
 const guardarLocalStorage = (claveLS, valorLS) => {
   localStorage.setItem(claveLS, JSON.stringify(valorLS));
 }
