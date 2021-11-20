@@ -12,7 +12,8 @@ $(document).ready(function () {
       claveUs: $("#resgistroContrasena").val(),
       ofertaCreditoUs: true,
       montoOfertaCreditoUs: 500000,
-      billeteraUs: [
+      billeteraUs: [ 
+        //para efectos de la simulacion se le crearan 2 cuentas con saldos de prueba para poder hacer transferencias entre ellas
         new Cuenta({
           numeroC: Math.floor(100000 + Math.random() * 900000), //codigo para crear un numero de cuenta aleatorio de 6 digitos
           saldoC: 100000,
