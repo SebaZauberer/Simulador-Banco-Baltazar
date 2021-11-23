@@ -40,12 +40,12 @@ $(document).ready(function () {
 
     //bucle para recorrer todos los registros de usuarios en la lista de LocaStorage
     $.each(usuariosLS, (index, value) => {
-      //Si el de mail es igual a la propiedad .mail de cada objeto
+      //Si el dato de mail es igual a la propiedad .mail de cada objeto
       if (value.mail == emailUsuario) {
         //Si los valores de mail y contraseña son iguales a los del objeto
         if (value.mail == emailUsuario && value.clave == contrasenaUsuario) {
           //Me envía al Dasboard
-          window.location.href = `/dashboard.html?user=${value.rut}`;
+          window.location.href = `/dashboard.html?user=${value.rut}&cuenta=${value.billetera[0].numCuenta}`;
         } else {
           $('#contrasenaUsuarioLogin').addClass('is-invalid');
         }
