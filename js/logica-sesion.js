@@ -1,5 +1,5 @@
 //funcion para simular el metodo .ready() para cargar script cuando se cargue la pagina
-var ready = (callback) => {
+const ready = (callback) => {
   if (document.readyState != "loading") callback();
   else document.addEventListener("DOMContentLoaded", callback);
 }
@@ -25,14 +25,47 @@ ready(() => {
   //genero el objeto con los datos de un usuario segun el paramero "user" de la URL
   let usuarioActivo = listaUsuarios.find(item => item.rut == obtenerVariablesGET('user'));
 
-  //console.log(usuarioActivo.nombre);
+  //Mostrar saldo
+  document.querySelectorAll('.saldoUsuario').forEach(element => element.innerText = '$' + usuarioActivo.billetera[0].saldo);
+
+  //Mostrar nombre
+  document.querySelectorAll('.nombreUsuario').forEach(element => element.innerText = usuarioActivo.nombre);
+
+  //Mostrar lista de cuentas por usuario
+  //lista de cuentas en el sidebar
+  let cuentasUsuarioSidebar = document.querySelector('#cuentasUsuarioSidebar');
+
+  for (let cuentaUS of usuarioActivo.billetera){
+    let tagA = document.createElement('a');
+
+    tagA.innerHTML = "Cuenta N° "+cuentaUS.numCuenta;
+    tagA.href = `/dashboard.html?user=${usuarioActivo.rut}&cuenta=${cuentaUS.numCuenta}`;
+    tagA.className = "collapse-item";
+
+    cuentasUsuarioSidebar.appendChild(tagA);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //scripts para manetener y cerrar sesión en el dashboard
-  let contado
   let contadorModal;
   let contadorSegModal;
 
   //funcion para mostrar un modal cada 1 minuto para preguntar si se desea mantener la sesion abierta
   let iniciarSesion = () => {
+    let contador;
+
     window.setTimeout(() => {
       //aquí utilizo la sintaxis de JQuery porque los modales de Bootstrap funcionan así
       $('#modalExtenderSesion').modal('show');
@@ -49,15 +82,17 @@ ready(() => {
       contadorModal = window.setTimeout(()=>{
         window.location.href = '/login.html'
       }, (1000*31));
-    }, (1000*60));
+    }, (1000*180));
   }
 
+  //funcion para reiniciar el tiempo de la sesion y así mantenerla activa
   let mantenerSesion = () => {
     clearInterval(contadorSegModal);
     clearTimeout(contadorModal);
     iniciarSesion();
   }
 
+  //inicio el contador de tiempo de la sesión
   iniciarSesion();
 
   document.querySelector('#btnMantenerSesion').addEventListener('click', () => {

@@ -96,14 +96,12 @@ const obtenerLocalStorage = (itemLS) => {
   return listaUsuarios;
 }
 
-document.querySelectorAll('.saldo').forEach(element => element.innerText = '$' + persona1.billetera[0].saldo);
-
 const aumentarSaldoCuenta = (usuario) => {
   let inputAgregarDinero = document.getElementById('inputAgregarDinero');
   let cantidadAumento = parseInt(inputAgregarDinero.value);
   usuario.billetera[0].agregarSaldo(cantidadAumento);
 
-  document.querySelectorAll('.saldo').forEach(element => element.innerText = '$' + persona1.billetera[0].saldo);
+  document.querySelectorAll('.saldo').forEach(element => element.innerText = '$' + usuarioActivo.billetera[0].saldo);
   inputAgregarDinero.value = '';
 
   registrarMovimientos(usuario.billetera[0]);
@@ -126,6 +124,6 @@ const registrarMovimientos = (cuenta) => {
 }
 
 /* Eventos */
-document.querySelector('#btnAgregarDinero').addEventListener('click', () => {
-  aumentarSaldoCuenta(persona1);
-});
+/* document.querySelector('#btnAgregarDinero').addEventListener('click', () => {
+  aumentarSaldoCuenta(usuarioActivo);
+}); */

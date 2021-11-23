@@ -54,10 +54,7 @@
           <span>Cuentas</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#">Cuenta N° 1</a>
-            <a class="collapse-item" href="#">Cuenta N° 2</a>
-          </div>
+          <div class="bg-white py-2 collapse-inner rounded" id="cuentasUsuarioSidebar"></div>
         </div>
       </li>
 
@@ -119,7 +116,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Sebastián</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small nombreUsuario">Nombre</span>
                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
               </a>
               <!-- Dropdown - User Information -->
@@ -153,7 +150,7 @@
         <div class="container-fluid">
 
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Bienvenido Sebastián</h1>
+            <h1 class="h3 mb-0 text-gray-800">Bienvenido <span class="nombreUsuario">Nombre</span></h1>
           </div>
 
           <!-- Content Row -->
@@ -166,7 +163,7 @@
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                         Cuenta Corriente <br> N°<span class="numero-cuenta">12345678</span></div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800 saldo">$0</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800 saldoUsuario">$0</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -217,7 +214,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <h2 class="saldo">$0</h2>
+                  <h2 class="saldoUsuario">$0</h2>
                   <form>
                     <div class="form-row">
                       <div class="col-3">
@@ -314,7 +311,7 @@
     <script src="js/sb-admin-2.min.js"></script>
     <script src="js/logica-principal.js"></script>
     <script src="js/logica-sesion.js"></script>
-
+    <script src="js/logica-API.js"></script>
 </body>
 
 </html>

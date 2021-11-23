@@ -62,7 +62,9 @@ $(document).ready(function () {
       $("#resgistroContrasena2").addClass('is-invalid');
     } else {
       crearUsuario();
-      window.location.href = `/dashboard.html?user=${value.rut}`;
+      //tomo los datos del ultimo usuario registrado y los manda como variables GET
+      let ultimoUsuario = listaUsuarios[listaUsuarios.length - 1];
+      window.location.href = `/dashboard.html?user=${ultimoUsuario.rut}&cuenta=${ultimoUsuario.billetera[0].numCuenta}`;
     }
   });
 
