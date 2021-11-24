@@ -116,3 +116,5 @@ const registrarMovimientos = (cuenta) => {
 document.querySelector('#btnAgregarDinero').addEventListener('click', () => {
   aumentarSaldoCuenta(usuarioActivo);
 });
+
+
