@@ -10,26 +10,28 @@ class Usuario {
     billeteraUs = []
   }) {
     this.rut = rutUs,
-      this.clave = claveUs,
-      this.nombre = nombreUs,
-      this.mail = correoUs,
-      this.ofertaCredito = ofertaCreditoUs,
-      this.montoOfertaCredito = montoOfertaCreditoUs,
-      this.billetera = billeteraUs
+    this.clave = claveUs,
+    this.nombre = nombreUs,
+    this.mail = correoUs,
+    this.ofertaCredito = ofertaCreditoUs,
+    this.montoOfertaCredito = montoOfertaCreditoUs,
+    this.billetera = billeteraUs
   }
 }
 
 class Cuenta {
   constructor({
     numeroC,
+    tipoC,
     saldoC,
     sobregiroC,
     movimientosC = []
   }) {
     this.numCuenta = numeroC,
-      this.saldo = saldoC,
-      this.sobregiro = sobregiroC,
-      this.movimientos = movimientosC
+    this.tipoCuenta = tipoC
+    this.saldo = saldoC,
+    this.sobregiro = sobregiroC,
+    this.movimientos = movimientosC
   }
 
   agregarSaldo(monto) {
@@ -63,28 +65,14 @@ class Cuenta {
   }
 }
 
-/* Constantes */
-const persona1 = new Usuario({
-  rutUs: 123456789,
-  claveUs: 1234,
-  nombreUs: "Sebastian",
-  correoUs: "seba@gmail.com",
-  billeteraUs: [
-    new Cuenta({
-      numeroC: Math.floor(100000 + Math.random() * 900000), //codigo para crear un numero de cuenta aleatorio de 6 digitos
-      saldoC: 1000,
-      sobregiroC: 3000
-    })
-  ]
-});
-
 /* Funciones */
 
-// Local storage
+// funcion para guardar una lista en el Local Storage
 const guardarLocalStorage = (claveLS, valorLS) => {
   localStorage.setItem(claveLS, JSON.stringify(valorLS));
 }
 
+//funcion para obtener la lista guardada en el Local Storage
 const obtenerLocalStorage = (itemLS) => {
   let listaLocalStorage = localStorage.getItem(itemLS),
   listaUsuarios = [];
@@ -96,6 +84,7 @@ const obtenerLocalStorage = (itemLS) => {
   return listaUsuarios;
 }
 
+//funcion para aumentar el saldo de la cuenta
 const aumentarSaldoCuenta = (usuario) => {
   let inputAgregarDinero = document.getElementById('inputAgregarDinero');
   let cantidadAumento = parseInt(inputAgregarDinero.value);
@@ -124,6 +113,6 @@ const registrarMovimientos = (cuenta) => {
 }
 
 /* Eventos */
-/* document.querySelector('#btnAgregarDinero').addEventListener('click', () => {
+document.querySelector('#btnAgregarDinero').addEventListener('click', () => {
   aumentarSaldoCuenta(usuarioActivo);
-}); */
+});

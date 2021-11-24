@@ -156,23 +156,8 @@
           <!-- Content Row -->
           <div class="row" id="listaCuentas">
             <!-- card -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Cuenta Corriente <br> N°<span class="numero-cuenta">12345678</span></div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800 saldoUsuario">$0</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-4">
+
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -189,8 +174,7 @@
                   </div>
                 </div>
               </div>
-            </div>
-
+            </div> -->
           </div>
 
           <!-- Content Row -->
@@ -200,7 +184,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Saldo cuenta corriente</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Cuenta N° <span class="numCuenta"></span></h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">
@@ -208,28 +192,38 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                       aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Compartir datos de la cuenta</a>
+                      <a class="dropdown-item" data-toggle="modal" href="#">Compartir datos de la cuenta</a>
                     </div>
                   </div>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <h2 class="saldoUsuario">$0</h2>
-                  <form>
-                    <div class="form-row">
-                      <div class="col-3">
-                        <input type="number" class="form-control" placeholder="$" id="inputAgregarDinero">
-                      </div>
-                      <div class="col">
-                        <a href="#" class="btn btn-primary btn-icon-split" id="btnAgregarDinero">
-                          <span class="icon text-white-50">
-                            <i class="fas fa-plus"></i>
-                          </span>
-                          <span class="text">Agregar saldo</span>
-                        </a>
-                      </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h3>Saldo</h3>
+                      <h2 class="saldoCuenta">$0</h2>
+                      <form class="mt-4">
+                        <div class="form-row">
+                          <div class="col-3">
+                            <input type="number" class="form-control" placeholder="$" id="inputAgregarDinero">
+                          </div>
+                          <div class="col">
+                            <a href="#" class="btn btn-primary btn-icon-split" id="btnAgregarDinero">
+                              <span class="icon text-white-50">
+                                <i class="fas fa-plus"></i>
+                              </span>
+                              <span class="text">Agregar saldo</span>
+                            </a>
+                          </div>
+                        </div>
+                      </form>
                     </div>
-                  </form>
+                    <div class="col-md-6">
+                      <h3>Cupo sobregiro</h3>
+                      <h2 class="salsoSobregiroCuenta">$0</h2>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -242,7 +236,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body" id="listaMovimientos">
-                  
+
                 </div>
               </div>
             </div>
@@ -281,8 +275,8 @@
 
     <!-- MODALS -->
     <!-- Logout Modal-->
-    <div class="modal fade" id="modalExtenderSesion" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
+    <div class="modal fade" id="modalExtenderSesion" data-backdrop="static" data-keyboard="false" tabindex="-1"
+      role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -290,7 +284,8 @@
           </div>
           <div class="modal-body">
             <p>Haz click en el botón "Mantener sesión" para seguir con la sesión activada.</p>
-            <p>Por motivos de seguridad, si no seleccíona una opción automaticamente la sesión se cerrará en <span class="contador-modal-cerrar-sesion">30</span> segundos.</p>
+            <p>Por motivos de seguridad, si no seleccíona una opción automaticamente la sesión se cerrará en <span
+                class="contador-modal-cerrar-sesion">30</span> segundos.</p>
           </div>
           <div class="modal-footer">
             <a class="btn  btn-secondary" href="login.html">Cerrar sesión</a>
@@ -311,7 +306,7 @@
     <script src="js/sb-admin-2.min.js"></script>
     <script src="js/logica-principal.js"></script>
     <script src="js/logica-sesion.js"></script>
-    <script src="js/logica-API.js"></script>
+    <!-- <script src="js/logica-API.js"></script> -->
 </body>
 
 </html>
